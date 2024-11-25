@@ -44,19 +44,19 @@ namespace ComputerAPI.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> PutComp(Guid id, CreateCompDto createCompDto)
         {
-            // Validate that the path ID matches the entity being updated
+            
             var existingComp = await _context.Comps.FindAsync(id);
             if (existingComp == null)
             {
                 return NotFound();
             }
 
-            // Mark the entity as modified
+            
             _context.Entry(existingComp).State = EntityState.Modified;
 
             try
             {
-                // Save changes to the database
+
                 await _context.SaveChangesAsync();
             }
             catch (DbUpdateConcurrencyException)
